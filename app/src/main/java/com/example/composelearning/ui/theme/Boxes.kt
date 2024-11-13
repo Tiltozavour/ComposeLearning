@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -30,6 +31,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.composelearning.R
@@ -66,6 +68,15 @@ fun CardBoxes() {
             TitleInfo(title = "Post", value = "0000")
             TitleInfo(title = "Followers", value = "0001")
             TitleInfo(title = "Folowing", value = "0000")
+
+        }
+        TextInfo("Соцсеть какая-то", 24.sp)
+        TextInfo("#Хешег", 14.sp)
+        TextInfo("Описание очеь длинное и капец какое интересное",12.sp)
+        Button(
+            onClick = {},
+            modifier = Modifier.padding(14.dp),
+            ) {
         }
     }
 
@@ -89,17 +100,28 @@ private fun TitleInfo(title:String, value: String) {
             text = value,
             fontFamily = FontFamily.Monospace,
             fontWeight = FontWeight.Bold
-
         )
     }
 
 }
 
+@Composable
+private fun TextInfo(info:String, size: TextUnit){
+    Column(modifier = Modifier.padding(start = 34.dp, bottom = 4.dp)) {
+        Text(
+            text = info,
+            fontSize = size,
+            fontFamily = FontFamily.Monospace
+        )
+    }
+
+}
+
+
 @Preview
 @Composable
 private fun CardLight(){
     ComposeLearningTheme(darkTheme = false) {
-
         CardBoxes()
     }
 
@@ -112,3 +134,4 @@ private fun CardDark(){
         CardBoxes()
     }
 }
+
