@@ -16,26 +16,26 @@ private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
     secondary = PurpleGrey80,
     tertiary = Pink80,
-    background = Color.DarkGray, //фон
-    surface = Color.Gray,
-    onPrimary = Color.DarkGray,
+    background = Color.LightGray, //фон
+    surface = Color.DarkGray,
+    onPrimary = Color.LightGray,
     onSecondary = Color.White,
     onTertiary = Color.White,
-    onBackground = Color.White, //на фоне
-    onSurface = Color.White,
+    onBackground = Color.DarkGray, //на фоне
+    onSurface = Color.DarkGray,
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = Purple40,
     secondary = PurpleGrey40,
     tertiary = Pink40,
-    background = Color.LightGray,
-    surface = Color.LightGray,
+    background = Color.DarkGray,
+    surface = Color.DarkGray,
     onPrimary = Color.White,
     onSecondary = Color.White,
     onTertiary = Color.White,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
+    onBackground = Color.LightGray,
+    onSurface = Color.LightGray,
 )
 
 @Composable
