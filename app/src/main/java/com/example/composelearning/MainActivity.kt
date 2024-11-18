@@ -27,13 +27,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            ComposeLearningTheme {
+            TestMaterial()
+         /*   ComposeLearningTheme {
                 Column( //слишком тяжелый, замена
                     modifier = Modifier.fillMaxSize()
                         .background(MaterialTheme.colorScheme.background)
                 ) {  }
                 CardBoxes()
-            }
+            }*/
         }
     }
 }
