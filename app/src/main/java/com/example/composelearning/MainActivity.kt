@@ -27,7 +27,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            TestMaterial()
+            GetBar()
+            //TestMaterial()
          /*   ComposeLearningTheme {
                 Column( //слишком тяжелый, замена
                     modifier = Modifier.fillMaxSize()
