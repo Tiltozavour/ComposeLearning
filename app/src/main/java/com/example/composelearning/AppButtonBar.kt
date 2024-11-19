@@ -38,6 +38,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -127,14 +128,14 @@ private fun TopAppNavigation() {
 @Composable
 private fun BottomNavigation() {
     var selectedItem by remember { mutableStateOf(0) }
-    val items = listOf("first", "second", "third")
+    val items = listOf(BotNavItems.Home,BotNavItems.Main,BotNavItems.Profile)
     NavigationBar {
         items.forEachIndexed { index, item ->
             NavigationBarItem(
                 icon = {
-                    Icon(Icons.Filled.Done, contentDescription = item)
+                    Icon(item.icon, null)
                 },
-                label = { Text(item) },
+                label = { Text(text = stringResource(id = item.resId)) },
                 selected = selectedItem == index,
                 onClick = { selectedItem = index },
                 alwaysShowLabel = false
@@ -143,6 +144,3 @@ private fun BottomNavigation() {
     }
 }
 
-private fun Drawer(){
-
-}
