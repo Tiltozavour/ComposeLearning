@@ -51,7 +51,8 @@ private fun preview(){
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun CardBoxes(viewModel: MainViewModel) {
-    val isFollowed by viewModel.isFollowing.collectAsState(initial = false)
+    val isFollowed = viewModel.isFollowing.collectAsState(initial = false) //рекомпазиция только для кнопки
+   // val isFollowed by viewModel.isFollowing.collectAsState(initial = false) // рекомпазиция не только кнопки но и контйнера кард
 
     Card(
         shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp),
@@ -95,7 +96,7 @@ fun CardBoxes(viewModel: MainViewModel) {
 
 @Composable
 private fun ButtonsClick(
-    isFollowed:Boolean,
+    isFollowed:State<Boolean>,
     clickListener: () -> Unit
 ){
     Button(
@@ -107,7 +108,7 @@ private fun ButtonsClick(
         )
     )
     {
-        val text = if (isFollowed) { "Unfollow" } else { "Follow" }
+        val text = if (isFollowed.value) { "Unfollow" } else { "Follow" }
         Text(text = text)
     }
 }
