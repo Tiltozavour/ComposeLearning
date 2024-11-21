@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider
 import com.example.composelearning.ui.theme.CardBoxes
 import com.example.composelearning.ui.theme.ComposeLearningTheme
 
@@ -26,16 +27,20 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         setContent {
-            GetBar()
-            //TestMaterial()
-         /*   ComposeLearningTheme {
-                Column( //слишком тяжелый, замена
-                    modifier = Modifier.fillMaxSize()
-                        .background(MaterialTheme.colorScheme.background)
-                ) {  }
-                CardBoxes()
-            }*/
+            ComposeLearningTheme {
+                CardBoxes(viewModel)
+                //GetBar()
+                //TestMaterial()
+                /*   ComposeLearningTheme {
+                       Column( //слишком тяжелый, замена
+                           modifier = Modifier.fillMaxSize()
+                               .background(MaterialTheme.colorScheme.background)
+                       ) {  }
+
+                   }*/
+            }
         }
     }
 }

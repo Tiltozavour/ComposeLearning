@@ -58,7 +58,7 @@ fun GetBar() {
     val scope = rememberCoroutineScope()
     val items = listOf(Icons.Default.Call, Icons.Default.Build, Icons.Default.Home)
     val selectedItems = remember { mutableStateOf(items[0]) } //стейт запоминается через ремембер (не переживает поворот экрана)
-    val snackBarHotState = SnackbarHostState()
+    val snackBarHotState = remember { SnackbarHostState() }
     val fubIsVisible = remember { mutableStateOf(true) } //установка по умолчанию стейка видисиости кноаки фаб
     ModalNavigationDrawer(
         drawerState = drawerState,
