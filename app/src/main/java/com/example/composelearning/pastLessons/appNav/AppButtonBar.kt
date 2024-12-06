@@ -1,8 +1,7 @@
-package com.example.composelearning
+package com.example.composelearning.pastLessons.appNav
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -11,12 +10,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Call
-import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.outlined.Done
-import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
@@ -48,7 +45,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Preview
@@ -164,7 +160,7 @@ private fun TopAppNavigation() {
 @Composable
 private fun BottomNavigation() {
     var selectedItem by remember { mutableStateOf(0) }
-    val items = listOf(BotNavItems.Home,BotNavItems.Main,BotNavItems.Profile)
+    val items = listOf(BotNavItems.Home, BotNavItems.Main, BotNavItems.Profile)
     NavigationBar {
         items.forEachIndexed { index, item ->
             NavigationBarItem(

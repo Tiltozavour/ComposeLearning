@@ -1,10 +1,11 @@
-package com.example.composelearning
+package com.example.composelearning.pastLessons.appNav
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Build
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.example.composelearning.R
 
 sealed class BotNavItems(
     val resId: Int,
