@@ -4,22 +4,21 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.lifecycle.ViewModelProvider
-import com.example.composelearning.pastLessons.cardInst.MainViewModel
 import com.example.composelearning.ui.theme.ComposeLearningTheme
-import com.example.composelearning.vkScroll.domain.PostInfo
-import com.example.composelearning.vkScroll.domain.StatisticItem
-import com.example.composelearning.vkScroll.domain.StatisticType
+import com.example.composelearning.vkScroll.presenter.VkCardViewModel
 import com.example.composelearning.vkScroll.presenter.cardScreen
+import androidx.activity.viewModels
 
 class MainActivity : ComponentActivity() {
+
+    private val viewModel by viewModels<VkCardViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        val viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         setContent {
             ComposeLearningTheme {
-                cardScreen()
+                cardScreen(viewModel)
                 //TableRow()
                 // CardBoxes(viewModel)
                 //GetBar()
