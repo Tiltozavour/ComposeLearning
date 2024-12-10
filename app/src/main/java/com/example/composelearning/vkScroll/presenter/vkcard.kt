@@ -51,7 +51,7 @@ import com.example.composelearning.vkScroll.domain.StatisticType
 
 
 @Composable
-fun cardScreen(viewModel: VkCardViewModel) {
+fun CardScreen(viewModel: VkCardViewModel) {
 
     val post = viewModel.post.collectAsState()
 
