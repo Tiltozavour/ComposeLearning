@@ -5,11 +5,15 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -19,32 +23,49 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.composelearning.R
 
 @Composable
-@Preview
-private fun preview(){
-    CardBoxes(viewModel = MainViewModel())
+ fun GetLazyColumn(
+    viewModel: MainViewModel
+ ){
+    Box(
+        modifier = Modifier.fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+    ){
+        val models by viewModel.instModel.collectAsState(listOf())
+        models.let { models ->
+            LazyColumn() {
+                items(items = models, key = {it.id}) { model ->
+                    CardBoxes(
+                        instModel = model,
+                        onFollowClickListener = {viewModel.changeFollowingState(it)}
+                    )
+                }
+            }
+        }
+    }
 }
 
 
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun CardBoxes(viewModel: MainViewModel) {
-    val isFollowed = viewModel.isFollowing.collectAsState(initial = false) //рекомпазиция только для кнопки
+private fun CardBoxes(
+    instModel: InstModel,
+    onFollowClickListener:(InstModel) -> Unit ) {
+    //val isFollowed = viewModel.isFollowing.collectAsState(initial = false) //рекомпазиция только для кнопки
    // val isFollowed by viewModel.isFollowing.collectAsState(initial = false) // рекомпазиция не только кнопки но и контйнера кард
 
     Card(
@@ -77,11 +98,11 @@ fun CardBoxes(viewModel: MainViewModel) {
             TitleInfo(title = "Folowing", value = "0000")
 
         }
-        TextInfo("Соцсеть какая-то", 24.sp)
+        TextInfo(info = instModel.title, 24.sp)
         TextInfo("#Хешег", 14.sp)
         TextInfo("Описание очеь длинное и капец какое интересное",12.sp)
-        ButtonsClick(isFollowed = isFollowed){
-            viewModel.changeFollowingState()
+        ButtonsClick(isFollowed = instModel.isFollowing){
+            onFollowClickListener(instModel)
         }
     }
 
@@ -89,7 +110,7 @@ fun CardBoxes(viewModel: MainViewModel) {
 
 @Composable
 private fun ButtonsClick(
-    isFollowed:State<Boolean>,
+    isFollowed:Boolean,
     clickListener: () -> Unit
 ){
     Button(
@@ -101,7 +122,7 @@ private fun ButtonsClick(
         )
     )
     {
-        val text = if (isFollowed.value) { "Unfollow" } else { "Follow" }
+        val text = if (isFollowed) { "Unfollow" } else { "Follow" }
         Text(text = text)
     }
 }
